@@ -4,7 +4,7 @@ from django.shortcuts import render
 # Create your views here.
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'catalog/home.html')
 
 
 def contacts(request):
@@ -14,5 +14,5 @@ def contacts(request):
         message = request.POST.get('message')
         print(f'Имя: {name}, Телефон: {phone}, Сообщение: {message}')
 
-    return render(request, 'contacts.html', {'contacts': contacts})
+    return render(request, 'catalog/contacts.html', {'contacts': contacts})
 
