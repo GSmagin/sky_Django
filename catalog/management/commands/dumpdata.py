@@ -18,7 +18,7 @@ def dump_data(file_path, apps):
 catalog_category = 'catalog.Category'
 catalog_product = 'catalog.Product'
 
-dump_data("catalog/fixtures/categories.json", catalog_category)
-dump_data("catalog/fixtures/products.json", catalog_product)
+dump_data("../../fixtures/categories.json", catalog_category)
+dump_data("../../fixtures/products.json", catalog_product)
 
 #python -Xutf8 manage.py dumpdata catalog.Category catalog.Product --indent 4 > catalog/fixtures/initial_data.json
