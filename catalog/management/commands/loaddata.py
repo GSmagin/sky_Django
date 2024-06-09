@@ -5,13 +5,13 @@ from django.core.management.base import BaseCommand
 from catalog.models import Product, Category
 
 
-# def setup_django():
-#     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
-#     django.setup()
-#
+def setup_django():
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+
 
 class Command(BaseCommand):
     help = 'Populate the database with initial data'
+    django.setup()
 
     @staticmethod
     def json_read(file_path):
