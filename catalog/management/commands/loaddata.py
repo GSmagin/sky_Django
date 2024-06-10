@@ -20,11 +20,11 @@ class Command(BaseCommand):
 
     @staticmethod
     def json_read_categories():
-        return Command.json_read('catalog/fixtures/categories.json')
+        return Command.json_read('catalog/management/commands/fixtures/categories.json')
 
     @staticmethod
     def json_read_products():
-        return Command.json_read('catalog/fixtures/products.json')
+        return Command.json_read('catalog/management/commands/fixtures/products.json')
 
     def handle(self, *args, **options):
         Product.objects.all().delete()
@@ -65,7 +65,4 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS('!!! Successfully created initial data!!!'))
 
 
-
-# (venv) PS D:\Skypro\sky_Django> python manage.py loaddata .\catalog\fixtures\products.json
-# Installed 3 object(s) from 1 fixture(s)
-# (venv) PS D:\Skypro\sky_Django>
+# python manage.py loaddata
