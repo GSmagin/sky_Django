@@ -16,3 +16,7 @@ def contacts(request):
 
     return render(request, 'catalog/contacts.html', {'contacts': contacts})
 
+
+def product(request):
+    return render(request, 'catalog/product.html')
+
