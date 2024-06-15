@@ -1,10 +1,10 @@
 from django.urls import path
-from catalog.views import home_content, contacts, product
+from catalog.views import home_content, contacts, product_detail, product_list, product_create
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('', home_content, name='home_content'),
+    path('', product_list, name='product_list'),
     path('contacts/', contacts, name='contacts'),
-    path('product/<int:pk>/', product, name='product'),
-
+    path('product/<int:pk>/', product_detail, name='product_detail'),
+    path('product/new/', product_create, name='product_create'),
 ]
