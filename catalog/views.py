@@ -5,10 +5,10 @@ from catalog.models import Product
 
 # Create your views here.
 
-def home(request):
+def home_content(request):
     product_list = Product.objects.all()
     context = {"product": product_list}
-    return render(request,  'catalog/home.html', context)
+    return render(request, 'catalog/home_content.html', context)
 
 
 def contacts(request):

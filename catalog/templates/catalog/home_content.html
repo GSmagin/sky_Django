@@ -1,0 +1,29 @@
+{% extends 'catalog/base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="row text-center">
+    {% for products in product %}
+        <div class="p-1 col-4">
+            <div class="card  mx-auto">
+                <div class="card-header div-fixed-size">
+                    <img src="{{ products.image | media_files }}" class="img-fluid" style="height: 300px;">
+                    <!--                   <h6 class="my-4 font-weight-normal">{{ products.name}}</h6>     width="300-->
+                </div>
+                <div class="card-body">
+                    <!--                    <h5 class="card-title pricing-card-title">{{ products.price }} ₽</h5> -->
+                    <ul class="mt-2 mb-2 text-start">
+                        <li>Продукт: {{ products.name | truncate_chars:30 }} </li>
+                        <li>Категория: {{ products.category.name | truncate_chars:30 }}</li>
+                        <li>Цена: {{ products.price }} ₽</li>
+                    </ul>
+                    <button type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</button>
+                    <a class="btn btn-lg btn-block btn-outline-primary"
+                       href="/product/{{ products.id }}">Подробно</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock  %}
+
+
