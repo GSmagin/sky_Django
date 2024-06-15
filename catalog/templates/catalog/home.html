@@ -1,17 +1,18 @@
 {% load static %}
+{% load my_tags %}
 <!doctype html>
 <html lang="ru">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Skystore</title>
-    <link href="{% static '/css/bootstrap.min.css'  %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css'  %}" rel="stylesheet">
 </head>
 <body>
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
     <h5 class="my-0 mr-md-auto font-weight-normal">Skystore</h5>
     <nav class="ms-5">
-        <a class="p-2 btn btn-outline-primary" href="/home">Каталог</a>
+        <a class="p-2 btn btn-outline-primary" href="/">Главная</a>
         <a class="p-2 btn btn-outline-primary" href="/contacts/">Контакты</a>
     </nav>
 </div>
@@ -23,24 +24,28 @@
 </div>
 
 <div class="container">
+
     <div class="row text-center">
-        <div class="col-3">
-            <div class="card mb-4 box-shadow">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Удобный сервис рассылок</h4>
+    {% for products in product %}
+        <div class="p-1 col-4">
+            <div class="card  mx-auto" >
+                <div class="card-header div-fixed-size">
+                    <img src="{{ products.image | media_files }}" class="img-fluid" style="height: 300px;" >
+<!--                   <h6 class="my-4 font-weight-normal">{{ products.name}}</h6>     width="300-->
                 </div>
                 <div class="card-body">
-                    <h1 class="card-title pricing-card-title">$ 140</h1>
-                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                        <li>- Неограниченная лицензия</li>
-                        <li>- Поддержка</li>
-                        <li>- Установка на сервер</li>
-                        <li>- Получение обновлений</li>
+<!--                    <h5 class="card-title pricing-card-title">{{ products.price }} ₽</h5> -->
+                    <ul class="mt-2 mb-2 text-start">
+                        <li>Продукт: {{ products.name | truncate_chars:30 }} </li>
+                        <li>Категория: {{ products.category.name | truncate_chars:30 }}</li>
+                        <li>Цена: {{ products.price }} ₽</li>
                     </ul>
                     <button type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</button>
+                    <button type="button" class="btn btn-lg btn-block btn-outline-primary">Подробно</button>
                 </div>
             </div>
         </div>
+         {% endfor %}
     </div>
 
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
@@ -75,6 +80,6 @@
     </footer>
 </div>
 
-<script src="{% static '/js/bootstrap.bundle.min.js' %}" crossorigin="anonymous"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}" crossorigin="anonymous"></script>
 </body>
 </html>
