@@ -11,6 +11,7 @@
                 </div>
                 <div class="card-body">
                     <ul class="mt-2 mb-2 text-start">
+<!--                       <li>Продукт: {{ product.name | slice:":30" }}</li>-->
                         <li>Продукт: {{ product.name | truncate_chars:30 }}</li>
                         <li>Категория: {{ product.category.name | truncate_chars:30 }}</li>
                         <li>Цена: {{ product.price }} ₽</li>
