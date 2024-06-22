@@ -1,12 +1,11 @@
 import os
 import smtplib
 from email.mime.text import MIMEText
-
 from config import settings
 
 
 def congratulate_mail_newsletter(blogpost):
-    if blogpost.views_count == 100:
+    if blogpost.views_count == 15:
         subject = 'Поздравляем, вы достигли отметки в 100 просмотров!'
         body = f'Ваш пост "{blogpost.title}" был просмотрен 100 раз!'
 
