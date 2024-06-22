@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
 from django.urls import reverse_lazy, reverse
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from catalog.models import Product
+from django.utils.text import slugify
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
+from catalog.models import Product, BlogPost
 from .forms import ProductForm
 from django.db import models
 
@@ -18,7 +19,6 @@ from django.db import models
 class ProductListView(ListView):
     model = Product
     template_name = 'catalog/product_list.html'
-
 
 # def product_detail(request, pk):
 #     product = get_object_or_404(Product, pk=pk)
@@ -74,3 +74,71 @@ def contacts(request):
         print(f'Имя: {name}, Телефон: {phone}, Сообщение: {message}')
 
     return render(request, 'catalog/contacts.html', {'contacts': contacts})
+
+
+class BlogPostDetailView(DetailView):
+    model = BlogPost
+    template_name = 'catalog/blogpost_detail.html'
+    context_object_name = 'blogpost'
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        obj.views_count += 1
+        obj.save()
+#        congratulate_by_mail(obj)
+        return obj
+
+
+class BlogPostListView(ListView):
+    model = BlogPost
+    template_name = 'catalog/blogpost_list.html'
+    context_object_name = 'blogposts'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return BlogPost.objects.filter(is_published=True)
+
+
+class BlogPostCreateView(CreateView):
+    model = BlogPost
+    template_name = 'catalog/blogpost_form.html'
+    fields = ["title", "content", "preview_image", "is_published"]
+    success_url = reverse_lazy('blogpost_list')
+
+    def form_valid(self, form):
+        if form.is_valid():
+            new_post = form.save(commit=False)
+            new_post.slug = slugify(new_post.title)
+            new_post.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy("blogpost_detail", args=[self.object.pk])
+
+
+class BlogPostUpdateView(UpdateView):
+    model = BlogPost
+    fields = ("title", "content", "preview_image", "is_published")
+    template_name = 'catalog/blogpost_form.html'
+    context_object_name = 'blogpost'
+    success_url = reverse_lazy('blogpost_detail')
+
+    def form_valid(self, form):
+        if form.is_valid():
+            new_post = form.save(commit=False)
+            new_post.slug = slugify(new_post.title)
+            new_post.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy("blogpost_detail", args=[self.object.pk])
+
+
+class BlogPostDeleteView(DeleteView):
+    model = BlogPost
+    success_url = reverse_lazy('blogpost_list')
+
+
+class BlogCreateView(TemplateView):
+    template_name = 'catalog/blog.html'
+
