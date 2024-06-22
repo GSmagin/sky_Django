@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator
-from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.urls import reverse_lazy, reverse
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from catalog.models import Product
 from .forms import ProductForm
+from django.db import models
 
 
 # def product_list(request):
@@ -22,12 +23,12 @@ class ProductListView(ListView):
 # def product_detail(request, pk):
 #     product = get_object_or_404(Product, pk=pk)
 #     context = {"product": product}
-#     return render(request, 'catalog/product.html', context)
+#     return render(request, 'catalog/product_detail.html', context)
 
 
 class ProductDetailView(DetailView):  # Переопределяем DetailView
     model = Product
-    template_name = 'catalog/product.html'
+    template_name = 'catalog/product_detail.html'
 
 
 # def product_create(request):
@@ -44,18 +45,25 @@ class ProductDetailView(DetailView):  # Переопределяем DetailView
 
 class ProductCreateView(CreateView):  # Переопределяем CreateView для создания продукта
     model = Product
-    form_class = ProductForm
-    success_url = '/catalog/product_form.html'
-    # fields = ['name', 'description', 'price', 'category', 'image']  # Поля для создания продукта
-    # success_url = reverse_lazy('catalog:product_form')# Перенаправление на список пр
+    template_name = 'catalog/product_create.html'
+    # template_name = 'catalog/product_form.html'
+    fields = ['name', 'description', 'price', 'category', 'image']
+    success_url = reverse_lazy('product_list')
 
 
-class ProductUpdateView(UpdateView):   # Переопределяем UpdateView для обновления продукта
+class ProductUpdateView(UpdateView):  # Переопределяем UpdateView для обновления продукта
     model = Product
-    form_class = ProductForm
-    success_url = '/catalog/product_form.html'
-    # fields = ['name', 'description', 'price', 'category', 'image']  # Поля для создания продукта
-    # success_url = reverse_lazy('catalog:product_form')# Перенаправление на список пр
+    template_name = 'catalog/product_update.html'
+    # template_name = 'catalog/product_form.html'
+    fields = ['name', 'description', 'price', 'category', 'image']
+    success_url = reverse_lazy('product_list')
+
+
+class ProductDeleteView(DeleteView):
+    model = Product  # Переопределяем DeleteView для удаления продукта
+    fields = ['name', 'description', 'price', 'category', 'image']
+    template_name = 'catalog/product_delete.html'
+    success_url = reverse_lazy('product_list')
 
 
 def contacts(request):

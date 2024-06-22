@@ -1,13 +1,9 @@
-<!-- templates/catalog/product_create.html -->
+<!-- templates/catalog/product_update.html -->
 {% extends 'catalog/base.html' %}
 {% block content %}
 <div class="container">
     <div class="row justify-content-center calc">
-        {% if object.id %}
-            <h2>Изменить продукт</h2>
-        {% else %}
-            <h2>Создать продукт</h2>
-        {% endif  %}
+        <h2>Изменить продукт</h2>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
