@@ -78,7 +78,7 @@ def contacts(request):
 
 class BlogPostDetailView(DetailView):
     model = BlogPost
-    template_name = 'catalog/blogpost_detail.html'
+    template_name = 'catalog/blog/blogpost_detail.html'
     context_object_name = 'blogpost'
 
     def get_object(self, queryset=None):
@@ -91,7 +91,7 @@ class BlogPostDetailView(DetailView):
 
 class BlogPostListView(ListView):
     model = BlogPost
-    template_name = 'catalog/blogpost_list.html'
+    template_name = 'catalog/blog/blogpost_list.html'
     context_object_name = 'blogposts'
     paginate_by = 10
 
@@ -101,7 +101,7 @@ class BlogPostListView(ListView):
 
 class BlogPostCreateView(CreateView):
     model = BlogPost
-    template_name = 'catalog/blogpost_form.html'
+    template_name = 'catalog/blog/blogpost_form.html'
     fields = ["title", "content", "preview_image", "is_published"]
     success_url = reverse_lazy('blogpost_list')
 
@@ -119,7 +119,7 @@ class BlogPostCreateView(CreateView):
 class BlogPostUpdateView(UpdateView):
     model = BlogPost
     fields = ("title", "content", "preview_image", "is_published")
-    template_name = 'catalog/blogpost_form.html'
+    template_name = 'catalog/blog/blogpost_form.html'
     context_object_name = 'blogpost'
     success_url = reverse_lazy('blogpost_detail')
 
