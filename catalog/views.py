@@ -7,6 +7,8 @@ from catalog.models import Product, BlogPost
 from .forms import ProductForm
 from django.db import models
 
+from .utils.mail_newsletter import congratulate_mail_newsletter
+
 
 # def product_list(request):
 #     product = Product.objects.all().order_by('created_at')  # Упорядочиваем по полю created_at
@@ -85,7 +87,7 @@ class BlogPostDetailView(DetailView):
         obj = super().get_object(queryset)
         obj.views_count += 1
         obj.save()
-#        congratulate_by_mail(obj)
+        congratulate_mail_newsletter(obj)
         return obj
 
 
