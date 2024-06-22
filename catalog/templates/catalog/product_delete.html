@@ -4,11 +4,11 @@
 {% block content %}
     <div class="container">
         <div class="row justify-content-center calc">
-            <h2>Удалить продукт</h2>
+            <h2>Вы уверены, что хотите удалить продукт ? </h2>
             <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
                 {{ form.as_p }}
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <img src="{{ product.image | media_files }}" class="img-fluid" alt="{{ product.name }}">
                 </div>
                 <div class="col-md-6">
@@ -16,7 +16,7 @@
                     <p>Категория: {{ product.category.name }}</p>
                     <p>Цена: {{ product.price }} ₽</p>
                     <p>Описание: {{ product.description }}</p>
-                    <button type="submit" class="btn btn-danger">Удалить</button>
+                    <button type="submit" class="btn btn-danger">Да,удалить</button>
                     <a class="btn btn-xs btn-block btn-outline-primary" href="{% url 'product_list'  %}">Отменить</a>
                     </div>
             </form>
