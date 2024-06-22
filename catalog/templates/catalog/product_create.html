@@ -3,15 +3,11 @@
 {% block content %}
 <div class="container">
     <div class="row justify-content-center calc">
-        {% if object.id %}
-            <h2>Изменить продукт</h2>
-        {% else %}
-            <h2>Создать продукт</h2>
-        {% endif  %}
+        <h2>Создать продукт</h2>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit" class="btn btn-primary">Сохранить</button>
+                <button type="submit" class="btn btn-xs btn-block btn-outline-primary">Сохранить</button>
             </form>
     </div>
 </div>
