@@ -17,9 +17,9 @@
                         <li>Цена: {{ product.price }} ₽</li>
                     </ul>
                     <button class="btn btn-xs btn-block btn-outline-primary">Купить</button>
-                    <a class="btn btn-xs btn-block btn-outline-primary" href="{% url 'product_detail' product.pk %}">Подробно</a>
-                    <a class="btn btn-xs btn-block btn-outline-primary" href="{% url 'product_update' product.pk %}">Изменить</a>
-                    <a class="btn btn-xs btn-block btn-outline-primary" href="{% url 'product_delete' product.pk %}">Удалить</a>
+                    <a class="btn btn-xs btn-block btn-outline-primary" href="{% url 'catalog:product_detail' product.pk %}">Подробно</a>
+                    <a class="btn btn-xs btn-block btn-outline-primary" href="{% url 'catalog:product_update' product.pk %}">Изменить</a>
+                    <a class="btn btn-xs btn-block btn-outline-primary" href="{% url 'catalog:product_delete' product.pk %}">Удалить</a>
                 </div>
             </div>
         </div>

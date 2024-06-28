@@ -30,8 +30,6 @@ app_name = CatalogConfig.name
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('catalog.urls')),
-
-#    path('contacts/', contacts, name='contacts'),
+    path('', include('catalog.urls', namespace='catalog')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

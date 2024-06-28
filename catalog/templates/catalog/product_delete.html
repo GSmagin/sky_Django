@@ -17,7 +17,7 @@
                     <p>Цена: {{ product.price }} ₽</p>
                     <p>Описание: {{ product.description }}</p>
                     <button type="submit" class="btn btn-danger">Да,удалить</button>
-                    <a class="btn btn-xs btn-block btn-outline-primary" href="{% url 'product_list'  %}">Отменить</a>
+                    <a class="btn btn-xs btn-block btn-outline-primary" href="{% url 'catalog:product_list'  %}">Отменить</a>
                     </div>
             </form>
         </div>

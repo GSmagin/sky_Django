@@ -17,11 +17,11 @@
 <div class="d-flex flex-column flex-md-row align-items-center p-1 px-md-2 mb-1 bg-white border-bottom box-shadow fixed-top">
     <h4 class="my-0 mr-md-auto font-weight-normal">MARKET_SKY</h4>
     <nav class="ms-2">
-        <a class="p-2 btn btn-outline-primary" href={% url 'product_list' %}>Главная</a>
-        <a class="p-2 btn btn-outline-primary" href="{% url 'product_create' %}">Добавить продукт</a>
-        <a class="p-2 btn btn-outline-primary" href="{% url 'blogpost_list' %}">Блог</a>
-        <a class="p-2 btn btn-outline-primary" href="{% url 'blogpost_create' %}">Создать пост</a>
-        <a class="p-2 btn btn-outline-primary" href="{% url 'contacts' %}">Контакты</a>
+        <a class="p-2 btn btn-outline-primary" href={% url 'catalog:product_list' %}>Главная</a>
+        <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:product_create' %}">Добавить продукт</a>
+        <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:blogpost_list' %}">Блог</a>
+        <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:blogpost_create' %}">Создать пост</a>
+        <a class="p-2 btn btn-outline-primary" href="{% url 'catalog:contacts' %}">Контакты</a>
     </nav>
 </div>
 

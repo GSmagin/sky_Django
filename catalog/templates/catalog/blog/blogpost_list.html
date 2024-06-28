@@ -12,7 +12,7 @@
                         <h3 class="mb-0">{{ blogpost.title }}</h3>
                         <div class="mb-1 text-muted">Создано: {{ blogpost.created_at|timesince }}</div>
                         <p class="mb-auto">{{ blogpost.content|truncatewords:20 }}</p>
-                        <a href="{% url 'blogpost_detail' blogpost.pk %}" class="stretched-link">Читать далее...</a>
+                        <a href="{% url 'catalog:blogpost_detail' blogpost.pk %}" class="stretched-link">Читать далее...</a>
                     </div>
                     <div class="col-auto l-none l-lg-block">
                     {% if blogpost.preview_image %}

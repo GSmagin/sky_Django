@@ -50,7 +50,7 @@ class ProductCreateView(CreateView):  # Переопределяем CreateView 
     template_name = 'catalog/product_create.html'
     # template_name = 'catalog/product_form.html'
     fields = ['name', 'description', 'price', 'category', 'image']
-    success_url = reverse_lazy('product_list')
+    success_url = reverse_lazy('catalog:product_list')
 
 
 class ProductUpdateView(UpdateView):  # Переопределяем UpdateView для обновления продукта
@@ -58,14 +58,14 @@ class ProductUpdateView(UpdateView):  # Переопределяем UpdateView 
     template_name = 'catalog/product_update.html'
     # template_name = 'catalog/product_form.html'
     fields = ['name', 'description', 'price', 'category', 'image']
-    success_url = reverse_lazy('product_list')
+    success_url = reverse_lazy('catalog:product_list')
 
 
 class ProductDeleteView(DeleteView):
     model = Product  # Переопределяем DeleteView для удаления продукта
     fields = ['name', 'description', 'price', 'category', 'image']
     template_name = 'catalog/product_delete.html'
-    success_url = reverse_lazy('product_list')
+    success_url = reverse_lazy('catalog:product_list')
 
 
 def contacts(request):
@@ -105,7 +105,7 @@ class BlogPostCreateView(CreateView):
     model = BlogPost
     template_name = 'catalog/blog/blogpost_form.html'
     fields = ["title", "content", "preview_image", "is_published"]
-    success_url = reverse_lazy('blogpost_list')
+    success_url = reverse_lazy('catalog:blogpost_list')
 
     def form_valid(self, form):
         if form.is_valid():
@@ -115,7 +115,7 @@ class BlogPostCreateView(CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy("blogpost_detail", args=[self.object.pk])
+        return reverse_lazy("catalog:blogpost_detail", args=[self.object.pk])
 
 
 class BlogPostUpdateView(UpdateView):
@@ -123,7 +123,7 @@ class BlogPostUpdateView(UpdateView):
     fields = ("title", "content", "preview_image", "is_published")
     template_name = 'catalog/blog/blogpost_form.html'
     context_object_name = 'blogpost'
-    success_url = reverse_lazy('blogpost_detail')
+    success_url = reverse_lazy('catalog:blogpost_detail')
 
     def form_valid(self, form):
         if form.is_valid():
@@ -133,13 +133,13 @@ class BlogPostUpdateView(UpdateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse_lazy("blogpost_detail", args=[self.object.pk])
+        return reverse_lazy("catalog:blogpost_detail", args=[self.object.pk])
 
 
 class BlogPostDeleteView(DeleteView):
     model = BlogPost
     template_name = 'catalog/blog/blogpost_confirm_delete.html'
-    success_url = reverse_lazy('blogpost_list')
+    success_url = reverse_lazy('catalog:blogpost_list')
 
 
 class BlogCreateView(TemplateView):
